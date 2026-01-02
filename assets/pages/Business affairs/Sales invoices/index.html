@@ -1,0 +1,102 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>برگشت از فروش</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <button class="back-btn" aria-label="بازگشت">
+          <i class="fas fa-arrow-right"></i>
+        </button>
+        <h1 class="header-title">برگشت از فروش (<span id="count">۰</span>)</h1>
+      </header>
+
+      <!-- Search Bar -->
+      <div class="search-section">
+        <div class="search-bar">
+          <div class="search-input-wrapper">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" placeholder="جستجو..." class="search-input" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Summary and Filters -->
+      <div class="summary-section">
+        <div class="filter-tabs">
+          <button class="filter-tab active" data-filter="all">همه</button>
+          <button class="filter-tab" data-filter="settled">تسویه شده</button>
+          <button class="filter-tab" data-filter="debtor">بدهکار</button>
+          <button class="filter-tab" data-filter="creditor">بستانکار</button>
+        </div>
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state">
+        <div class="empty-icon-wrapper">
+          <svg
+            class="empty-icon"
+            viewBox="0 0 200 200"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <!-- Shopping Bag -->
+            <path
+              d="M50 60 L50 180 L150 180 L150 60 Z"
+              fill="#e8f0f0"
+              stroke="#c8d8d8"
+              stroke-width="2"
+            />
+            <path
+              d="M70 60 L70 40 Q70 20 90 20 L110 20 Q130 20 130 40 L130 60"
+              fill="none"
+              stroke="#a8c0c0"
+              stroke-width="2"
+            />
+            <!-- Handles -->
+            <path
+              d="M60 80 L60 100"
+              stroke="#5a8a89"
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+            <path
+              d="M140 80 L140 100"
+              stroke="#5a8a89"
+              stroke-width="3"
+              stroke-linecap="round"
+            />
+            <!-- Face -->
+            <circle cx="85" cy="120" r="4" fill="#5a8a89" />
+            <circle cx="115" cy="120" r="4" fill="#5a8a89" />
+            <path
+              d="M90 135 Q100 145 110 135"
+              fill="none"
+              stroke="#5a8a89"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </div>
+        <p class="empty-message">به نظر میاد هنوز فاکتوری ثبت نکردید.</p>
+      </div>
+
+      <!-- Floating Action Button -->
+      <button class="fab" aria-label="افزودن فاکتور جدید">
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

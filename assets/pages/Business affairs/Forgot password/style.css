@@ -1,0 +1,214 @@
+/** @format */
+@font-face {
+  font-family: IranSans;
+  src: url(../../../file/font/Vazirmatn[wght].ttf);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: IranSans;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #42706f 0%, #2d5a5a 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  direction: rtl;
+}
+
+.container {
+  width: 100%;
+  max-width: 450px;
+}
+
+.forgot-password-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 40px;
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.header h1 {
+  color: #333;
+  font-size: 28px;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.header p {
+  color: #666;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.form {
+  margin-top: 30px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+.input-group > .show__Password {
+  all: unset;
+  position: absolute;
+  top: 55%;
+  left: 3%;
+  color: #999;
+  cursor: pointer;
+}
+
+.input-group label {
+  display: block;
+  color: #333;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 10px;
+  font-size: 15px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  direction: rtl;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #42706f;
+  box-shadow: 0 0 0 3px rgba(66, 112, 111, 0.1);
+}
+
+.input-group input::placeholder {
+  color: #999;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #42706f 0%, #2d5a5a 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  font-family: inherit;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(66, 112, 111, 0.4);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+}
+
+.submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 25px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.login-link {
+  color: #42706f;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.login-link:hover {
+  color: #2d5a5a;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+  .forgot-password-card {
+    padding: 30px 20px;
+  }
+
+  .header h1 {
+    font-size: 24px;
+  }
+}
+
+/* Success Message */
+.success-message {
+  background: #d4edda;
+  color: #155724;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 14px;
+  display: none;
+}
+
+.success-message.show {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Error Message */
+.error-message {
+  background: #f8d7da;
+  color: #721c24;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 14px;
+  display: none;
+}
+
+.error-message.show {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}

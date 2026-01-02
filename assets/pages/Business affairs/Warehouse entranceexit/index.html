@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ورود خروج کالا</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <button class="back-button"><i class="fas fa-arrow-right"></i></button>
+        <h1 class="title">ورود خروج کالا</h1>
+      </header>
+
+      <div class="search-container">
+        <div class="search-bar">
+          <span class="search-icon"
+            ><i class="fas fa-search" aria-hidden="true"></i
+          ></span>
+          <input type="text" placeholder="جستجو..." class="search-input" />
+        </div>
+      </div>
+
+      <div class="empty-state">
+        <div class="illustration">
+          <svg viewBox="0 0 200 200" class="truck-svg">
+            <path
+              d="M 100 50 L 100 150"
+              stroke="#E0E0E0"
+              stroke-width="3"
+              fill="none"
+              stroke-linecap="round"
+            />
+            <path
+              d="M 90 140 L 100 150 L 110 140"
+              stroke="#E0E0E0"
+              stroke-width="3"
+              fill="none"
+              stroke-linecap="round"
+            />
+            <rect x="60" y="120" width="80" height="8" fill="#D0D0D0" rx="2" />
+            <rect x="65" y="128" width="70" height="15" fill="#D0D0D0" rx="2" />
+            <circle cx="75" cy="145" r="8" fill="#666" />
+            <circle cx="125" cy="145" r="8" fill="#666" />
+            <circle cx="75" cy="145" r="5" fill="#999" />
+            <circle cx="125" cy="145" r="5" fill="#999" />
+            <rect x="140" y="100" width="4" height="30" fill="#666" rx="2" />
+            <rect x="140" y="100" width="20" height="4" fill="#666" rx="2" />
+            <rect x="70" y="80" width="60" height="40" fill="#D4C4A8" rx="2" />
+            <rect x="72" y="82" width="56" height="36" fill="#E8DDC8" rx="1" />
+            <rect x="75" y="85" width="8" height="8" fill="#C44" rx="1" />
+            <rect x="75" y="50" width="50" height="35" fill="#D4C4A8" rx="2" />
+            <rect x="77" y="52" width="46" height="31" fill="#E8DDC8" rx="1" />
+          </svg>
+        </div>
+        <p class="empty-text">
+          به نظر میاد هنوز چیزی تعریف نکردید! اگه کالایی وارد یا خارج شده باشه،
+          یا مصرف یا تولید کردید و داخل فاکتورهاتون نیست ولی میخواید موجودی
+          کالاتون تغییر کنه می تونید اون رو اینجا ثبت کنید تا روی موجودی کالاتون
+          اعمال بشه
+        </p>
+      </div>
+
+      <button class="fab">
+        <i class="fas fa-plus"></i>
+      </button>
+
+      <div class="add__modal">
+        <form action="" class="add__product">
+          <h4>افزودن محصول جدید</h4>
+          <button type="button" class="exit">
+            <i class="fas fa-times"></i>
+          </button>
+          <div>
+            <label>نام محصول را وارد کنید</label>
+            <input class="product__name" type="text" />
+          </div>
+          <div>
+            <label>قیمت خرید وارد کنید</label>
+            <input class="purchasePrice" type="number" />
+            <div id="purchasePriceWords" class="price-word"></div>
+          </div>
+
+          <div>
+            <label>قیمت فروش وارد کنید</label>
+            <input class="salePrice" type="number" />
+            <div id="salePriceWords" class="price-word"></div>
+          </div>
+          <div>
+            <label>تعداد محصول را وارد کنید</label>
+            <input class="inventory" type="number" />
+          </div>
+          <button type="button" class="btn__submit">افزودن محصول جدید</button>
+          <p class="message__add"></p>
+        </form>
+      </div>
+      <div class="update__modal">
+        <form action="" class="update__product">
+          <h4>اطلاعات مشتری را تغییر دهید</h4>
+          <button type="button" class="update__exit">
+            <i class="fas fa-times"></i>
+          </button>
+          <div>
+            <label>نام محصول را وارد کنید</label>
+            <input class="update__product__name" type="text" />
+          </div>
+          <div>
+            <label>قیمت خرید وارد کنید</label>
+            <input class="update__purchasePrice" type="number" />
+            <div id="update__purchasePriceWords" class="price-word"></div>
+          </div>
+
+          <div>
+            <label>قیمت فروش وارد کنید</label>
+            <input class="update__salePrice" type="number" />
+            <div id="update__salePriceWords" class="price-word"></div>
+          </div>
+          <div>
+            <label>تعداد محصول را وارد کنید</label>
+            <input class="update__inventory" type="number" />
+          </div>
+          <button type="button" class="btn__submit">اعمال تغییرات</button>
+          <p class="message__update"></p>
+        </form>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>

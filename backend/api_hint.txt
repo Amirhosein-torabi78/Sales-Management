@@ -1,0 +1,228 @@
+Api Guide Documention
+Base Url = http:localhost:3000
+
+============================================Login*=========================================
+
+- endPoint = /login
+- method = POST
+- headers = {'content-type' : 'application/json'}
+- body = userName , password
+
+============================================Logout*=========================================
+
+- endPoint = /logout
+- method = GET
+
+============================================forgot password*=========================================
+
+- endPoint = /forgotPassword
+- method = POST
+- headers = {'content-type' : 'application/json'}
+- body = email , newPassword
+
+============================================refresh*=========================================
+
+- endPoint = /refresh
+- method = GET
+
+============================================me*=========================================
+
+- endPoint = /me
+- method = GET
+
+============================================GET All Customers*=========================================
+
+- endPoint = /customers
+- method = GET
+- Description = for pagination please send /customers?page=pageNumber
+
+============================================GET Single Customer*=========================================
+
+- endPoint = /customers/id
+- method = GET
+
+============================================Add New Customers*=========================================
+
+- endPoint = /customers
+- method = POST
+- headers = {'content-type' : 'application/json'}
+- body = fullName (required) and other props is optional
+- other props = secoundPhone , firstPhone , address
+
+
+============================================Edit Customers*=========================================
+
+- endPoint = /customers/id
+- method = PUT
+- headers = {'content-type' : 'application/json'}
+- body = fullName (required) and other props is optional
+- other props = secoundPhone , firstPhone , address
+
+============================================Delete Customers*=========================================
+
+- endPoint = /customers/id
+- method = DELETE
+
+============================================GET All Products*=========================================
+
+- endPoint = /products
+- method = GET
+- Description = for pagination please send /products?page=pageNumber
+
+============================================Add New Product*=========================================
+
+- endPoint = /products
+- method = POST
+- headers = {'content-type' : 'application/json'}
+- body = name and salePrice and purchasePrice is required but other props is optional
+- other props = inventory
+
+
+============================================Edit Product*=========================================
+
+- endPoint = /products/id
+- method = PUT
+- headers = {'content-type' : 'application/json'}
+- body = name and salePrice and purchasePrice is required but other props is optional
+- other props = inventory
+
+============================================Delete Product*=========================================
+
+- endPoint = /products/id
+- method = DELETE
+
+============================================GET All Representations*=========================================
+
+- endPoint = /representations
+- method = GET
+- Description = for pagination please send /representations?page=pageNumber
+
+============================================Add New Representation=========================================
+
+- endPoint = /representations
+- method = POST
+- headers = {'content-type' : 'application/json'}
+- body = name required but other props is optional
+- other props = firstPhone, secoundPhone
+
+
+============================================Edit Representation=========================================
+
+- endPoint = /representations/id
+- method = PUT
+- headers = {'content-type' : 'application/json'}
+- body = name is required but other props is optional
+- other props = firstPhone , secoundPhone
+
+============================================Delete Representation=========================================
+
+- endPoint = /representations/id
+- method = DELETE
+
+============================================GET All Sellers*=========================================
+
+- endPoint = /sellers
+- method = GET
+- Description = for pagination please send /sellers?page=pageNumber
+
+============================================Add New Seller=========================================
+
+- endPoint = /Sellers
+- method = POST
+- headers = {'content-type' : 'application/json'}
+- body = fullName required but other props is optional
+- other props = firstPhone, secoundPhone , address
+
+
+============================================Edit Seller=========================================
+
+- endPoint = /sellers/id
+- method = PUT
+- headers = {'content-type' : 'application/json'}
+- body = fullName is required but other props is optional
+- other props = firstPhone , secoundPhone , address
+
+============================================Delete Seller=========================================
+
+- endPoint = /Sellers/id
+- method = DELETE
+
+============================================GET All SaleInvoices=========================================
+
+- endPoint = /saleInvoices
+- method = GET
+- Description = for pagination please send /saleInvoices?page=pageNumber
+
+============================================Add New SaleInvoice=========================================
+
+- endPoint = /saleInvoices
+- method = POST
+- headers = {'content-type' : 'application/json'}
+- body = pay and products and seller and customer is required but other props is optional
+- other props = price , priceOfCredit , priceOfCheck
+- Description = products shcema most be like this {product : productId (required) , price : Number (optional) , inventory : Number (required) , pay :       enum: ["cash", "credit", "check", "cardReader" , "check and credit"],
+}
+
+
+============================================Edit SaleInvoice=========================================
+
+- endPoint = /saleInvoices/id
+- method = PUT
+- headers = {'content-type' : 'application/json'}
+- body = pay and product and seller and customer is required but other props is optional
+- other props = price , priceOfCredit
+
+============================================Delete SaleInvoice=========================================
+
+- endPoint = /saleInvoices/id
+- method = DELETE
+
+============================================Set Status of Sale Invoice=========================================
+
+- endPoint = /saleInvoices/id/setStatus
+- method = POST
+
+============================================Filter Sale Invoices=========================================
+
+- endPoint = /saleInvoices/filter
+- Description = for pagination please send /saleInvoices?page=pageNumber
+- method = POST
+- body = any props of saleInvoice like {status : "process"}
+- headers = {'content-type' : 'application/json'}
+
+============================================Return Products=========================================
+
+- endPoint = /saleInvoices/id/return
+- method = POST
+- body = {prdoucts : Array}
+- headers = {'content-type' : 'application/json'}
+- Description = any props of products must be like this {id : productId , inventory : Number}
+
+============================================Receiveds=========================================
+
+- endPoint = /receiveds
+- method = POST
+- body = {seller : id , customer : id , price : Number , description : String}
+- headers = {'content-type' : 'application/json'}
+- Description = seller and customer , price is required but description is optional
+
+============================================Add New Purchase Invoice=========================================
+
+- endPoint = /purchaseinvoices
+- method = POST
+- body = {pay : ["cash" || "credit" || "check" || "cardReader" || "check and credit"] , representation : id , off : Number ,  status : ['process' || 'completed'] , price : Number , priceOfCheck : Number , priceOfCredit : Number , products : [{name : String , purchasePrice : Number , salePrice : Number , inventory : Number}]}
+- headers = {'content-type' : 'application/json'}
+- Description = all properties in body is required just description is optional
+
+============================================Edit Purchase Invoice=========================================
+
+- endPoint = /purchaseinvoices/id
+- method = POST
+- body = {pay : ["cash" || "credit" || "check" || "cardReader" || "check and credit"] , representation : id , off : Number ,  status : ['process' || 'completed'] , price : Number , priceOfCheck : Number , priceOfCredit : Number}
+- headers = {'content-type' : 'application/json'}
+- Description = all properties in body is required just description is optional and can not product change
+
+============================================Remove Purchase Invoice=========================================
+
+- endPoint = /purchaseinvoices/id
+- method = DELETE

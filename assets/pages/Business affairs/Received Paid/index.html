@@ -1,0 +1,120 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>مدیریت پرداختی و دریافتی ها</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <div class="header-left">
+          <button
+            class="backBtn"
+            id="backBtn"
+            aria-label="بازگشت"
+            title="بازگشت"
+          >
+         <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+        <h1 class="header-title">مدیریت پرداختی و دریافتی ها</h1>
+      </header>
+
+      <!-- Tabs -->
+      <div class="tabs">
+        <button class="tab" id="paymentsTab">پرداختی</button>
+        <button class="tab active" id="receiptsTab">دریافتی</button>
+      </div>
+
+      <!-- Summary Bar -->
+      <div class="summary-bar">
+        <div class="summary-item">
+          <span class="summary-label">جمع:</span>
+          <span class="summary-value" id="totalValue">۰</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">نقد:</span>
+          <span class="summary-value" id="cashValue">۰</span>
+        </div>
+        <div class="summary-item">
+          <span class="summary-label">چک:</span>
+          <span class="summary-value" id="checkValue">۰</span>
+        </div>
+      </div>
+
+      <!-- Main Content - Empty State -->
+      <div class="content">
+        <div class="empty-state">
+          <div class="illustration">
+            <svg
+              class="wallet"
+              viewBox="0 0 200 150"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <!-- Wallet -->
+              <path
+                d="M30 50 L170 50 L170 120 L30 120 Z"
+                fill="#FF6B4A"
+                stroke="#E55A3A"
+                stroke-width="2"
+              />
+              <path
+                d="M30 50 Q30 30 50 30 L150 30 Q170 30 170 50"
+                fill="#FF6B4A"
+              />
+              <circle cx="160" cy="85" r="8" fill="#FFD700" />
+              <!-- Bee -->
+              <g class="bee" transform="translate(120, 40)">
+                <circle cx="0" cy="0" r="8" fill="#4A90E2" />
+                <circle cx="0" cy="0" r="5" fill="#87CEEB" />
+                <path
+                  d="M-5 -3 L-8 -5 M-5 3 L-8 5 M5 -3 L8 -5 M5 3 L8 5"
+                  stroke="#FFD700"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M-8 -5 Q-10 -8 -12 -10 Q-10 -8 -8 -5"
+                  stroke="#87CEEB"
+                  stroke-width="1.5"
+                  fill="none"
+                />
+              </g>
+              <!-- Flight path -->
+              <path
+                class="flight-path"
+                d="M120 40 Q100 20 80 10"
+                stroke="#87CEEB"
+                stroke-width="2"
+                stroke-dasharray="5,5"
+                fill="none"
+              />
+            </svg>
+          </div>
+          <p class="empty-message">به نظر میاد هنوز دریافتی ثبت نکردید.</p>
+        </div>
+      </div>
+
+      <!-- Floating Action Button -->
+      <button class="fab" id="addBtn" aria-label="افزودن" title="افزودن">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+        >
+          <path d="M12 5v14M5 12h14" />
+        </svg>
+      </button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

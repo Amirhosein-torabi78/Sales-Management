@@ -1,0 +1,64 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>فراموشی رمز عبور</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="forgot-password-card">
+        <div class="header">
+          <h1>فراموشی رمز عبور</h1>
+          <p>لطفاً ایمیل و رمز عبور جدید خود را وارد کنید</p>
+        </div>
+
+        <form id="forgotPasswordForm" class="form">
+          <div class="input-group">
+            <label for="email">ایمیل</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="ایمیل خود را وارد کنید"
+              required
+            />
+          </div>
+
+          <div class="input-group">
+            <label for="password">رمز عبور جدید</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="رمز عبور جدید خود را وارد کنید"
+              required
+            />
+            <button type="button" class="show__Password">
+              <i class="fa-solid fa-eye-slash"></i>
+            </button>
+          </div>
+
+          <button type="submit" class="submit-btn">تغییر رمز عبور</button>
+        </form>
+
+        <div class="footer">
+          <a href="../Login/login.html" class="login-link"
+            >بازگشت به صفحه ورود</a
+          >
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- cdn font awesome -->
+    <script
+      src="https://kit.fontawesome.com/a6d46a5bbd.js"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>

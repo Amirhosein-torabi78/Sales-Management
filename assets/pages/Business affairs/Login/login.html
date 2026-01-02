@@ -1,0 +1,86 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>صفحه ورود</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-box">
+        <div class="login-header">
+          <h1>ورود</h1>
+          <p>به حساب کاربری خود وارد شوید</p>
+        </div>
+        <form class="login-form" id="loginForm">
+          <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="نام کاربری یا ایمیل"
+              required
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="رمز عبور"
+              required
+              autocomplete="off"
+            />
+            <button type="button" class="toggle-password" id="togglePassword">
+              <i class="fa-solid fa-eye-slash"></i>
+            </button>
+          </div>
+
+          <div class="options">
+            <label class="remember-me">
+              <input type="checkbox" id="rememberMe" />
+              <span class="checkmark"></span>
+              مرا به خاطر بسپار
+            </label>
+            <a href="../Forgot password/index.html" class="forgot-password"
+              >رمز عبور را فراموش کردید؟</a
+            >
+          </div>
+
+          <button type="submit" class="login-btn">
+            <span class="btn-text">ورود</span>
+            <div class="loading-spinner" style="display: none">
+              <i class="fas fa-spinner fa-spin"></i>
+            </div>
+          </button>
+        </form>
+      </div>
+
+      <div class="background-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+      </div>
+    </div>
+
+    <div class="notification" id="notification"></div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script type="module" src="./script.js"></script>
+  </body>
+</html>

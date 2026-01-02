@@ -1,0 +1,344 @@
+/** @format */
+
+/* ===== CSS Variables ===== */
+:root {
+  --color-primary: #42706f;
+  --color-primary-light: #5a8a89;
+  --color-primary-lighter: #6ba5a4;
+  --color-primary-bg: #e0f0ef;
+  --color-text: #1a1a1a;
+  --color-text-secondary: #666;
+  --color-border: #f0f0f0;
+  --color-bg: #f5f5f5;
+  --color-white: #ffffff;
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(66, 112, 111, 0.35);
+  --shadow-lg: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --transition: all 0.2s;
+}
+@font-face {
+  font-family: IranSans;
+  src: url(../../../file/font/Vazirmatn[wght].ttf);
+}
+
+/* ===== Reset & Base ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: IranSans;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  background: var(--color-bg);
+  min-height: 100vh;
+  direction: rtl;
+  overflow-x: hidden;
+}
+
+/* ===== Container ===== */
+.container {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  background: var(--color-white);
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Header ===== */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.backBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text);
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: var(--transition);
+  -webkit-tap-highlight-color: transparent;
+  font-size: 18px;
+}
+
+.icon-btn:active {
+  background-color: var(--color-bg);
+}
+
+.icon-btn svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.help-btn {
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--color-text);
+  border-radius: 50%;
+  padding: 0;
+}
+
+.help-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.header-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+  text-align: center;
+  flex: 1;
+  padding: 0 8px;
+}
+
+/* ===== Tabs ===== */
+.tabs {
+  display: flex;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tab {
+  flex: 1;
+  padding: 14px 16px;
+  background: none;
+  border: none;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text);
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tab.active {
+  color: var(--color-primary);
+  background: var(--color-primary-bg);
+}
+
+.tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2.5px;
+  background: var(--color-primary);
+  border-radius: 2px 2px 0 0;
+}
+
+/* ===== Summary Bar ===== */
+.summary-bar {
+  background: var(--color-primary);
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--color-white);
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.summary-label {
+  font-size: 11px;
+  opacity: 0.95;
+  font-weight: 400;
+}
+
+.summary-value {
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+/* ===== Content ===== */
+.content {
+  flex: 1;
+  padding: 40px 20px 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 200px);
+}
+
+.empty-state {
+  text-align: center;
+  width: 100%;
+}
+
+.illustration {
+  margin-bottom: 24px;
+  position: relative;
+  height: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wallet {
+  width: 180px;
+  height: auto;
+  filter: drop-shadow(var(--shadow-sm));
+}
+
+.bee {
+  animation: fly 3s ease-in-out infinite;
+}
+
+@keyframes fly {
+  0%,
+  100% {
+    transform: translate(120px, 40px) translateY(0);
+  }
+  50% {
+    transform: translate(120px, 40px) translateY(-8px);
+  }
+}
+
+.flight-path {
+  animation: dash 2s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+
+.empty-message {
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  margin-top: 16px;
+  line-height: 1.5;
+  padding: 0 20px;
+}
+
+/* ===== Floating Action Button ===== */
+.fab {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--color-primary-lighter);
+  border: none;
+  color: var(--color-white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  z-index: 10;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.fab:active {
+  transform: translateX(-50%) scale(0.92);
+  box-shadow: 0 2px 8px rgba(66, 112, 111, 0.3);
+}
+
+.fab svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 480px) {
+  body {
+    padding: 0;
+  }
+
+  .container {
+    max-width: 100%;
+    min-height: 100vh;
+  }
+
+  .header {
+    padding: 12px 16px;
+  }
+
+  .tab {
+    padding: 14px 12px;
+    font-size: 14px;
+  }
+
+  .summary-bar {
+    padding: 14px 16px;
+  }
+
+  .summary-value {
+    font-size: 16px;
+  }
+
+  .content {
+    padding: 32px 16px 100px;
+  }
+
+  .illustration {
+    height: 200px;
+  }
+
+  .wallet {
+    width: 160px;
+  }
+
+  .empty-message {
+    font-size: 14px;
+    padding: 0 16px;
+  }
+
+  .fab {
+    bottom: 20px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .fab svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (min-width: 415px) {
+  .container {
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+  }
+}

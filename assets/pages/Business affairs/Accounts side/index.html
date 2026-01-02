@@ -1,0 +1,318 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>طرف حساب ها</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="top-bar">
+          <div class="left-icons">
+            <button class="back-btn" title="بازگشت" aria-label="بازگشت">
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+          <h1 class="title">طرف حساب ها (۰)</h1>
+        </div>
+
+        <div class="search-container">
+          <i class="fas fa-search search-icon" aria-hidden="true"></i>
+          <input
+            type="text"
+            class="search-input"
+            placeholder="جستجو..."
+            aria-label="جستجوی طرف حساب"
+          />
+        </div>
+
+        <div class="filter-tabs">
+          <div class="tabs-container" role="tablist">
+            <button class="tab customrs active" role="tab" aria-selected="true">
+              مشتری ها
+            </button>
+            <button class="tab Agencies" role="tab" aria-selected="false">
+              نمایندگی ها
+            </button>
+            <button class="tab Visitors" role="tab" aria-selected="false">
+              ویزیتور ها
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main class="main-content">
+        <div class="empty-state">
+          <div class="illustration-circle" aria-hidden="true">
+            <div class="illustration-content">
+              <div class="coffee-cup">
+                <div class="cup-body"></div>
+                <div class="cup-handle"></div>
+                <div class="coffee-liquid"></div>
+              </div>
+              <div class="document">
+                <div class="check-item">
+                  <div class="checkbox checked"></div>
+                  <div class="line"></div>
+                </div>
+                <div class="check-item">
+                  <div class="checkbox checked"></div>
+                  <div class="line"></div>
+                </div>
+                <div class="check-item">
+                  <div class="checkbox checked"></div>
+                  <div class="line"></div>
+                </div>
+              </div>
+              <div class="pencil">
+                <div class="pencil-body"></div>
+                <div class="pencil-eraser"></div>
+              </div>
+            </div>
+          </div>
+          <p class="empty-message">هیچ طرف حسابی پیدا نشد.</p>
+        </div>
+        <div class="box__obobserver"></div>
+      </main>
+      <div class="container__form__add">
+        <form action="" class="new__customer">
+          <button type="button" class="exit">
+            <i class="fas fa-plus"></i>
+          </button>
+          <h5>اطلاعات مشتری جدید وارد کنید</h5>
+          <div>
+            <label for="#">نام و نام خانوادگی:</label>
+            <input
+              class="fullName"
+              type="text"
+              placeholder="نام و نام خانوادگی مشتری را وارد کنید"
+            />
+          </div>
+          <div>
+            <label for="#">شماره همراه مشتری:</label>
+            <input
+              class="mobileNumber"
+              type="number"
+              placeholder="شماره همراه مشتری را وارد کنید"
+            />
+          </div>
+          <div>
+            <label for="#">شماره محل کار مشتری:</label>
+            <input
+              class="workNumber"
+              type="number"
+              placeholder="شماره محل کار مشتری را وارد کنید"
+            />
+          </div>
+          <div>
+            <label for="#">آدرس مشتری:</label>
+            <input
+              class="address"
+              type="text"
+              placeholder="آدرس مشتری را وارد کنید"
+            />
+          </div>
+
+          <button type="button" class="add__customer">افزودن مشتری جدید</button>
+          <p class="message__add"></p>
+        </form>
+      </div>
+      <div class="container__form__update">
+        <form action="" class="form__update">
+          <button type="button" class="exit__form__update">
+            <i class="fas fa-plus"></i>
+          </button>
+          <h5>اطلاعات مشتری را تغییر دهید</h5>
+          <div>
+            <label for="#">نام و نام خانوادگی:</label>
+            <input
+              class="fullName__update"
+              type="text"
+              placeholder="نام و نام خانوادگی مشتری را وارد کنید"
+            />
+          </div>
+          <div>
+            <label for="#">شماره همراه مشتری:</label>
+            <input
+              class="mobileNumber__update"
+              type="number"
+              placeholder="شماره همراه مشتری را وارد کنید"
+            />
+          </div>
+          <div>
+            <label for="#">شماره محل کار مشتری:</label>
+            <input
+              class="workNumber__update"
+              type="number"
+              placeholder="شماره محل کار مشتری را وارد کنید"
+            />
+          </div>
+          <div>
+            <label for="#">آدرس مشتری:</label>
+            <input
+              class="address__update"
+              type="text"
+              placeholder="آدرس مشتری را وارد کنید"
+            />
+          </div>
+
+          <button type="button" class="btn__form__update">
+            تغییر اطلاعات مشتری
+          </button>
+          <p class="message__update"></p>
+        </form>
+      </div>
+      <button
+        class="fab"
+        title="افزودن طرف حساب جدید"
+        aria-label="افزودن طرف حساب جدید"
+      >
+        <i class="fas fa-user-plus"></i>
+      </button>
+      <section class="container__profile">
+        <header class="customer__profile">
+          <div class="customer__profile__img">
+            <img src="../../../file/img/avatar-user.jpg" alt="#" />
+          </div>
+          <div class="customer__profile__data">
+            <div class="container__icons">
+              <button class="show__form__update">
+                <svg
+                  class="MuiSvgIcon-root MuiSvgIcon-colorPrimary MuiSvgIcon-fontSizeMedium mui-rtl-1lock4g"
+                  focusable="false"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34a.996.996 0 0 0-1.41 0l-1.83 1.83 3.75 3.75z"
+                  ></path>
+                </svg>
+              </button>
+              <button class="remove__Entity">
+                <svg
+                  class="MuiSvgIcon-root MuiSvgIcon-colorError MuiSvgIcon-fontSizeMedium mui-rtl-3elg3p"
+                  focusable="false"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zM19 4h-3.5l-1-1h-5l-1 1H5v2h14z"
+                  ></path>
+                </svg>
+              </button>
+              <button class="exit__profile">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+            <div class="container__data">
+              <h5 id="fullName"></h5>
+              <p id="firstPhone"></p>
+              <p id="secoundPhone"></p>
+              <p id="address"></p>
+            </div>
+          </div>
+        </header>
+        <div class="Invoices">
+          <button class="purchase__invoices item" data-text="Purchase invoices">
+            <span>
+              <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
+                <path
+                  d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"
+                ></path></svg
+            ></span>
+            فاکتور خرید
+          </button>
+          <button class="InvoicesSales item" data-text="Sales invoices">
+            <span>
+              <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
+                <path
+                  d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"
+                ></path></svg
+            ></span>
+            فاکتور فروش
+          </button>
+          <button class="received__paid item" data-text="Received Paid">
+            <span>
+              <svg viewBox="0 0 24 24" fill="white" width="24" height="24">
+                <path
+                  d="M7,15H9C9,16.08 10.37,17 12,17C13.63,17 15,16.08 15,15C15,13.9 13.96,13.5 11.76,12.97C9.64,12.44 7,11.78 7,9C7,7.21 8.47,5.69 10.5,5.18V3H13.5V5.18C15.53,5.69 17,7.21 17,9H15C15,7.92 13.63,7 12,7C10.37,7 9,7.92 9,9C9,10.1 10.04,10.5 12.24,11.03C14.36,11.56 17,12.22 17,15C17,16.79 15.53,18.31 13.5,18.82V21H10.5V18.82C8.47,18.31 7,16.79 7,15Z"
+                ></path>
+              </svg>
+            </span>
+            دریافتی/پرداختی
+          </button>
+        </div>
+        <div class="invoice__reports">
+          <div class="purchase__invoice__reports">
+            <p>فاکتور خرید</p>
+            <div>
+              <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                  <!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                  <path
+                    fill="#008c46"
+                    d="M192 64C156.7 64 128 92.7 128 128L128 512C128 547.3 156.7 576 192 576L448 576C483.3 576 512 547.3 512 512L512 234.5C512 217.5 505.3 201.2 493.3 189.2L386.7 82.7C374.7 70.7 358.5 64 341.5 64L192 64zM453.5 240L360 240C346.7 240 336 229.3 336 216L336 122.5L453.5 240zM192 448L192 384C192 366.3 206.3 352 224 352L416 352C433.7 352 448 366.3 448 384L448 448C448 465.7 433.7 480 416 480L224 480C206.3 480 192 465.7 192 448zM216 128L264 128C277.3 128 288 138.7 288 152C288 165.3 277.3 176 264 176L216 176C202.7 176 192 165.3 192 152C192 138.7 202.7 128 216 128zM216 224L264 224C277.3 224 288 234.7 288 248C288 261.3 277.3 272 264 272L216 272C202.7 272 192 261.3 192 248C192 234.7 202.7 224 216 224z"
+                  />
+                </svg>
+              </span>
+              <span class="">0تومان</span>
+            </div>
+          </div>
+          <div class="sales__invoice__reports">
+            <p>فاکتور فروش</p>
+            <div>
+              <span class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                  <!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                  <path
+                    fill="#cc0000"
+                    d="M192 64C156.7 64 128 92.7 128 128L128 512C128 547.3 156.7 576 192 576L448 576C483.3 576 512 547.3 512 512L512 234.5C512 217.5 505.3 201.2 493.3 189.2L386.7 82.7C374.7 70.7 358.5 64 341.5 64L192 64zM453.5 240L360 240C346.7 240 336 229.3 336 216L336 122.5L453.5 240zM192 448L192 384C192 366.3 206.3 352 224 352L416 352C433.7 352 448 366.3 448 384L448 448C448 465.7 433.7 480 416 480L224 480C206.3 480 192 465.7 192 448zM216 128L264 128C277.3 128 288 138.7 288 152C288 165.3 277.3 176 264 176L216 176C202.7 176 192 165.3 192 152C192 138.7 202.7 128 216 128zM216 224L264 224C277.3 224 288 234.7 288 248C288 261.3 277.3 272 264 272L216 272C202.7 272 192 261.3 192 248C192 234.7 202.7 224 216 224z"
+                  />
+                </svg>
+              </span>
+              <span class="purchase__invoice__price">0تومان</span>
+            </div>
+          </div>
+          <div class="payment__reports">
+            <p>پرداختی</p>
+            <div>
+              <span class="icon"
+                ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                  <!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                  <path
+                    fill="#00b72e"
+                    d="M297.4 438.6C309.9 451.1 330.2 451.1 342.7 438.6L502.7 278.6C515.2 266.1 515.2 245.8 502.7 233.3C490.2 220.8 469.9 220.8 457.4 233.3L320 370.7L182.6 233.4C170.1 220.9 149.8 220.9 137.3 233.4C124.8 245.9 124.8 266.2 137.3 278.7L297.3 438.7z"
+                  /></svg
+              ></span>
+              <span class="totalDemands">0تومان</span>
+            </div>
+          </div>
+          <div class="received__reports">
+            <p>دریافتی</p>
+            <div>
+              <span class="icon"
+                ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                  <!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
+                  <path
+                    fill="#ce0000"
+                    d="M297.4 438.6C309.9 451.1 330.2 451.1 342.7 438.6L502.7 278.6C515.2 266.1 515.2 245.8 502.7 233.3C490.2 220.8 469.9 220.8 457.4 233.3L320 370.7L182.6 233.4C170.1 220.9 149.8 220.9 137.3 233.4C124.8 245.9 124.8 266.2 137.3 278.7L297.3 438.7z"
+                  /></svg
+              ></span>
+              <span class="totalPays">0تومان</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

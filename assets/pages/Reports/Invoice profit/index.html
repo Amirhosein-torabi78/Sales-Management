@@ -1,0 +1,106 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>گزارش سود فاکتورها</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <header class="header">
+        <button class="back-button" aria-label="بازگشت">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M15 18L9 12L15 6"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+        <h1 class="title">گزارش سود فاکتورها</h1>
+      </header>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <div class="illustration-container">
+          <div class="circle-gradient">
+            <!-- Coffee Cup -->
+            <div class="coffee-cup">
+              <div class="cup-body"></div>
+              <div class="cup-handle"></div>
+              <div class="coffee-liquid"></div>
+              <div class="steam steam1"></div>
+              <div class="steam steam2"></div>
+            </div>
+
+            <!-- Document -->
+            <div class="document">
+              <div class="document-line"></div>
+              <div class="document-line"></div>
+              <div class="document-line"></div>
+              <div class="checkbox checkbox1">
+                <div class="checkmark"></div>
+              </div>
+              <div class="checkbox checkbox2">
+                <div class="checkmark"></div>
+              </div>
+              <div class="checkbox checkbox3">
+                <div class="checkmark"></div>
+              </div>
+            </div>
+
+            <!-- Pencil -->
+            <div class="pencil">
+              <div class="pencil-body"></div>
+              <div class="pencil-eraser"></div>
+              <div class="pencil-tip"></div>
+            </div>
+          </div>
+        </div>
+
+        <p class="instruction-text">
+          برروی جستجو کلیک کنید و مشخصات گزارشتان را وارد کنید سپس برروی جستجو
+          بزنید.
+        </p>
+      </main>
+
+      <!-- Floating Action Button -->
+      <button class="fab" aria-label="جستجو">
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            cx="11"
+            cy="11"
+            r="8"
+            stroke="currentColor"
+            stroke-width="2"
+          />
+          <path
+            d="M21 21L16.65 16.65"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+        </svg>
+      </button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  </body>
+</html>
