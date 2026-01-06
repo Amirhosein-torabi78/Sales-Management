@@ -6,6 +6,7 @@ const connectToDb = require("../../utils/db");
 const customerModel = require("../../models/customer");
 const RBAC = require("../../utils/RBAC");
 const { isValidObjectId } = require("mongoose");
+const buildSearchQuery = require("../../utils/buildSearchQuery");
 
 router.get("/", RBAC, async (req, res) => {
   try {
@@ -178,4 +179,63 @@ router.get("/:id", RBAC, async (req, res) => {
   }
 });
 
+router.post("/search", RBAC, async (req, res) => {
+  try {
+    await connectToDb();
+    const { page } = req.query;
+
+    if (!req.body || Object.keys(req.body).length === 0) {
+      return res.status(422).json({
+        error: "لطفا مقداری را برای سرچ معین کنید",
+        success: false,
+      });
+    }
+
+    const query = buildSearchQuery({
+      body: req.body,
+      stringFields: ["fullName", "address"],
+      exactFields: ["firstPhone", "secoundPhone"],
+    });
+    const customersArray = await customerModel
+      .find(query)
+      .populate("saleInvoices")
+      .populate("credits")
+      .populate("demands")
+      .lean();
+
+    const customers = customersArray.map((customer) => {
+      const totalDemands = customer.demands.reduce((acc, curr) => {
+        acc += curr.price;
+        return acc;
+      }, 0);
+      const totalCredits = customer.credits.reduce((acc, curr) => {
+        acc += curr.price;
+        return acc;
+      }, 0);
+      const totalPurchases = customer.saleInvoices.reduce((acc, curr) => {
+        acc += curr.price + curr.priceOfCredit + curr.priceOfCheck;
+        return acc;
+      }, 0);
+
+      return {
+        ...customer,
+        totalCredits,
+        totalDemands,
+        totalPurchases,
+        totalPays: totalPurchases - totalCredits,
+      };
+    });
+
+    if (page) {
+      const page = req.query.page * 10;
+      const datas = customers.slice(page - 10, page);
+      const totalPages = Math.ceil(customers.length / 10);
+      return res.json({ customers: datas, totalPages, success: true });
+    } else {
+      return res.json({ customers, success: true });
+    }
+  } catch (error) {
+    return res.status(500).json({ error: "خطای ناشناخته", success: false });
+  }
+});
 module.exports = router;

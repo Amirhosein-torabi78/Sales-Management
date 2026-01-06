@@ -7,7 +7,7 @@ const creditModel = require("../../models/credit");
 const RBAC = require("../../utils/RBAC");
 const { isValidObjectId } = require("mongoose");
 
-router.get("/", RBAC , async (req, res) => {
+router.get("/", RBAC, async (req, res) => {
   try {
     await connectToDb();
     const credits = await creditModel
@@ -16,7 +16,7 @@ router.get("/", RBAC , async (req, res) => {
       .populate("saleInvoices")
       .lean();
 
-      // just -id send of purchaseInvoices send to front-end
+    // just -id send of purchaseInvoices send to front-end
     if (req.query?.page) {
       const page = req.query.page * 10;
       const datas = credits.slice(page - 10, page);
@@ -30,7 +30,7 @@ router.get("/", RBAC , async (req, res) => {
   }
 });
 
-router.put("/:id", RBAC ,  async (req, res) => {
+router.put("/:id", RBAC, async (req, res) => {
   try {
     await connectToDb();
     const { id } = req.params;
@@ -62,7 +62,7 @@ router.put("/:id", RBAC ,  async (req, res) => {
   }
 });
 
-router.delete("/:id", RBAC ,  async (req, res) => {
+router.delete("/:id", RBAC, async (req, res) => {
   try {
     await connectToDb();
     const { id } = req.params;
@@ -80,6 +80,30 @@ router.delete("/:id", RBAC ,  async (req, res) => {
       message: "نسیه با موفقیت حذف شد",
       success: true,
     });
+  } catch (error) {
+    return res.status(500).json({ error: "خطای ناشناخته", success: false });
+  }
+});
+
+router.get("/:id", RBAC, async (req, res) => {
+  try {
+    await connectToDb();
+    const { id } = req.params;
+    if (!id || !isValidObjectId(id)) {
+      return res
+        .status(422)
+        .json({ error: "آیدی مشتری معتبر نیست", success: false });
+    }
+    const credit = await creditModel
+      .findOne({ _id: id })
+      .populate("customer")
+      .populate("saleInvoice")
+      .populate("demands")
+      .lean();
+    if (!credit) {
+      return res.status(404).json({ error: "مشتری یافت نشد", success: false });
+    }
+   return res.json({ credit, success: true });
   } catch (error) {
     return res.status(500).json({ error: "خطای ناشناخته", success: false });
   }

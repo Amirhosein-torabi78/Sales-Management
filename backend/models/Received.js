@@ -10,7 +10,7 @@ const receivedSchema = new mongoose.Schema(
       ref: "Customer",
       required: true,
     },
-    seller: { type: mongoose.Types.ObjectId, required: true },
+    seller: { type: mongoose.Types.ObjectId, ref: "Seller", required: true },
     description: { type: String, required: false },
     saleInvoice: { type: mongoose.Types.ObjectId, ref: "SaleInvoice" },
   },

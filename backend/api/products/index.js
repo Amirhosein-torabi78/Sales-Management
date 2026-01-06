@@ -6,6 +6,7 @@ const connectToDb = require("../../utils/db");
 const productModel = require("../../models/product");
 const RBAC = require("../../utils/RBAC");
 const { isValidObjectId } = require("mongoose");
+const buildSearchQuery = require("../../utils/buildSearchQuery");
 
 router.get("/", RBAC, async (req, res) => {
   try {
@@ -106,6 +107,56 @@ router.delete("/:id", RBAC, async (req, res) => {
       message: "محصول با موفقیت حذف شد",
       success: true,
     });
+  } catch (error) {
+    return res.status(500).json({ error: "خطای ناشناخته", success: false });
+  }
+});
+
+router.get("/:id", RBAC, async (req, res) => {
+  try {
+    await connectToDb();
+    const { id } = req.params;
+    if (!id || !isValidObjectId(id)) {
+      return res
+        .status(422)
+        .json({ error: "آیدی محصول معتبر نیست", success: false });
+    }
+    const product = await productModel.findOne({ _id: id }).lean();
+    if (!product) {
+      return res.status(404).json({ error: "محصول یافت نشد", success: false });
+    }
+    return res.json({ product, success: true });
+  } catch (error) {
+    return res.status(500).json({ error: "خطای ناشناخته", success: false });
+  }
+});
+
+router.post("/search", RBAC, async (req, res) => {
+  try {
+    await connectToDb();
+
+    if (!req.body || Object.keys(req.body).length === 0) {
+      return res.status(422).json({
+        error: "لطفا مقداری را برای سرچ معین کنید",
+        success: false,
+      });
+    }
+
+    const query = buildSearchQuery({
+      body: req.body,
+      stringFields: ["title", "name", "brand"],
+      exactFields: ["price", "stock", "category"],
+    });
+
+    const products = await productModel.find(query).lean();
+    if (req.query?.page) {
+      const page = req.query.page * 10;
+      const datas = products.slice(page - 10, page);
+      const totalPages = Math.ceil(products.length / 10);
+      return res.json({ products: datas, totalPages, success: true });
+    }
+
+    return res.json({ products, success: true });
   } catch (error) {
     return res.status(500).json({ error: "خطای ناشناخته", success: false });
   }

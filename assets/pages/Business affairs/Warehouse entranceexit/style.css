@@ -489,3 +489,64 @@ form > div input {
     max-width: 100%;
   }
 }
+/* ======================== Confirm Modal Style ======================== */
+.modal-confirm {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modal-confirm.active {
+  opacity: 1;
+}
+
+.modal-content {
+  background: #fff;
+  width: 90%;
+  max-width: 380px;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.modal-confirm.active .modal-content {
+  transform: translateY(0);
+}
+
+.modal-icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+}
+
+.btn-confirm-danger {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  background: #e74c3c;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-confirm-secondary {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+  cursor: pointer;
+}

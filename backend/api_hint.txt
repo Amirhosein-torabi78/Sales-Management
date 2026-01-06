@@ -1,47 +1,55 @@
 Api Guide Documention
 Base Url = http:localhost:3000
 
-============================================Login*=========================================
+============================================Login=========================================
 
 - endPoint = /login
 - method = POST
 - headers = {'content-type' : 'application/json'}
 - body = userName , password
 
-============================================Logout*=========================================
+============================================Logout=========================================
 
 - endPoint = /logout
 - method = GET
 
-============================================forgot password*=========================================
+============================================forgot password=========================================
 
 - endPoint = /forgotPassword
 - method = POST
 - headers = {'content-type' : 'application/json'}
 - body = email , newPassword
 
-============================================refresh*=========================================
+============================================refresh=========================================
 
 - endPoint = /refresh
 - method = GET
 
-============================================me*=========================================
+============================================me=========================================
 
 - endPoint = /me
 - method = GET
 
-============================================GET All Customers*=========================================
+============================================GET All Customers=========================================
 
 - endPoint = /customers
 - method = GET
 - Description = for pagination please send /customers?page=pageNumber
 
-============================================GET Single Customer*=========================================
+============================================GET Single Customer=========================================
 
 - endPoint = /customers/id
 - method = GET
 
-============================================Add New Customers*=========================================
+============================================Search In Customers=========================================
+
+- endPoint = /customers/search
+- method = POST
+- body = just string of customers with value you can send like {fullName : String , address : String}
+- headers = {'content-type' : 'application/json'}
+- Description = for pagination please send /customers/search?page=pageNumber
+
+============================================Add New Customers=========================================
 
 - endPoint = /customers
 - method = POST
@@ -50,7 +58,7 @@ Base Url = http:localhost:3000
 - other props = secoundPhone , firstPhone , address
 
 
-============================================Edit Customers*=========================================
+============================================Edit Customers=========================================
 
 - endPoint = /customers/id
 - method = PUT
@@ -58,18 +66,26 @@ Base Url = http:localhost:3000
 - body = fullName (required) and other props is optional
 - other props = secoundPhone , firstPhone , address
 
-============================================Delete Customers*=========================================
+============================================Delete Customers=========================================
 
 - endPoint = /customers/id
 - method = DELETE
 
-============================================GET All Products*=========================================
+============================================GET All Products=========================================
 
 - endPoint = /products
 - method = GET
 - Description = for pagination please send /products?page=pageNumber
 
-============================================Add New Product*=========================================
+============================================Search In Products=========================================
+
+- endPoint = /products/search
+- method = POST
+- body = any props of products with value you can send like {name : String}
+- headers = {'content-type' : 'application/json'}
+- Description = for pagination please send /products/search?page=pageNumber
+
+============================================Add New Product=========================================
 
 - endPoint = /products
 - method = POST
@@ -78,7 +94,7 @@ Base Url = http:localhost:3000
 - other props = inventory
 
 
-============================================Edit Product*=========================================
+============================================Edit Product=========================================
 
 - endPoint = /products/id
 - method = PUT
@@ -86,16 +102,30 @@ Base Url = http:localhost:3000
 - body = name and salePrice and purchasePrice is required but other props is optional
 - other props = inventory
 
-============================================Delete Product*=========================================
+============================================Delete Product=========================================
 
 - endPoint = /products/id
 - method = DELETE
 
-============================================GET All Representations*=========================================
+============================================GET All Representations=========================================
 
 - endPoint = /representations
 - method = GET
 - Description = for pagination please send /representations?page=pageNumber
+
+============================================Get Single Representation=========================================
+
+- endPoint = /representation/id
+- method = Get
+
+============================================Search In Representation=========================================
+
+- endPoint = /representation/search
+- method = POST
+- body = just string props of representation with value you can send like {name : String , address : String}
+- headers = {'content-type' : 'application/json'}
+- Description = for pagination please send /representation/search?page=pageNumber
+
 
 ============================================Add New Representation=========================================
 
@@ -119,11 +149,24 @@ Base Url = http:localhost:3000
 - endPoint = /representations/id
 - method = DELETE
 
-============================================GET All Sellers*=========================================
+============================================GET All Sellers=========================================
 
 - endPoint = /sellers
 - method = GET
 - Description = for pagination please send /sellers?page=pageNumber
+
+============================================Get Single Seller=========================================
+
+- endPoint = /sellers/id
+- method = POST
+
+============================================Search In Sellers=========================================
+
+- endPoint = /sellers/search
+- method = POST
+- body = just string props of sellers with value you can send like {fullName : String , address : String}
+- headers = {'content-type' : 'application/json'}
+- Description = for pagination please send /sellers/search?page=pageNumber
 
 ============================================Add New Seller=========================================
 
@@ -190,6 +233,15 @@ Base Url = http:localhost:3000
 - body = any props of saleInvoice like {status : "process"}
 - headers = {'content-type' : 'application/json'}
 
+
+============================================Search In Credits=========================================
+
+- endPoint = /credits/search
+- method = POST
+- body = any props of credits with value you can send like {price : Number}
+- headers = {'content-type' : 'application/json'}
+- Description = for pagination please send /credits/search?page=pageNumber
+
 ============================================Return Products=========================================
 
 - endPoint = /saleInvoices/id/return
@@ -205,6 +257,22 @@ Base Url = http:localhost:3000
 - body = {seller : id , customer : id , price : Number , description : String}
 - headers = {'content-type' : 'application/json'}
 - Description = seller and customer , price is required but description is optional
+
+============================================Get All purchaseinvoices=========================================
+
+- endPoint = /purchaseinvoices
+- method = POST
+- body = any props of purchaseinvoices
+- headers = {'content-type' : 'application/json'}
+- Description = for pagination please send /purchaseinvoices/search?page=pageNumber
+
+============================================Search In Purchaseinvoices=========================================
+
+- endPoint = /Purchaseinvoices/search
+- method = POST
+- body = for purchaseinvoices you can just search with pay property like {pay : 'credit'}
+- headers = {'content-type' : 'application/json'}
+- Description = for pagination please send /Purchaseinvoices/search?page=pageNumber
 
 ============================================Add New Purchase Invoice=========================================
 

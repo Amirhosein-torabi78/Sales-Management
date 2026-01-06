@@ -1,4 +1,6 @@
 /** @format */
+
+/* ======================== Imports ======================== */
 import appendHtml from "../../../components/modules/appendHtml.js";
 import fetchHandler from "../../../components/modules/fetchHandler.js";
 import InfiniteScrollObserver from "../../../components/modules/InfiniteScrollObserver.js";
@@ -6,10 +8,9 @@ import createBackButton from "../../../components/modules/createBackButton.js";
 import convertToPersianWords from "../../../components/modules/convertToPersianWords.js";
 import deleteEntity from "../../../components/modules/deleteEntity.js";
 import redirectToLogin from "../../../components/modules/redirectToLogin.js";
+import showConfirm from "../../../components/modules/showConfirm.js";
 
-// ========================
-// DOM Selectors
-// ========================
+/* ======================== DOM Selectors ======================== */
 const $ = (selector) => document.querySelector(selector);
 
 const DOM = {
@@ -35,11 +36,10 @@ const DOM = {
   messageUpdateBox: $(".message__update"),
   updatePurchasePriceWords: $("#update__purchasePriceWords"),
   updateSalePriceWords: $("#update__salePriceWords"),
+  searchInput: $(".search-input"),
 };
 
-// ========================
-// Initialization
-// ========================
+/* ======================== Initialization ======================== */
 document.addEventListener("DOMContentLoaded", () => {
   createBackButton(".back-button");
 
@@ -56,11 +56,11 @@ document.addEventListener("DOMContentLoaded", () => {
   DOM.containerProduct.addEventListener("click", handleUpdateProduct);
 
   setupPriceWords();
+
+  DOM.searchInput.addEventListener("input", handleSearchInput);
 });
 
-// ========================
-// Toggle Class Utility
-// ========================
+/* ======================== Toggle Class Utility ======================== */
 function toggleClass(button, target, action, className) {
   if (!button || !target) return;
 
@@ -76,19 +76,24 @@ function toggleClass(button, target, action, className) {
   });
 }
 
-// ========================
-// Fetch / Infinite Scroll
-// ========================
+/* ======================== Fetch / Infinite Scroll ======================== */
 let pageNumber = 1;
 let isFetching = false;
 let hasMore = true;
+let searchTimeout;
 
 const customerScrollObserver = InfiniteScrollObserver({
   container: DOM.containerProduct,
   itemSelector: ".product-card",
   callback: () => {
     pageNumber++;
-    fetchCustomerData(`/products?page=`, "products", templetHtml);
+    const searchTerm = DOM.searchInput.value.trim();
+
+    if (searchTerm) {
+      fetchSearchData(searchTerm);
+    } else {
+      fetchCustomerData(`/products?page=`, "products", templetHtml);
+    }
   },
 });
 
@@ -98,7 +103,6 @@ async function fetchCustomerData(url, key, renderItem) {
 
   try {
     const response = await fetchHandler(`${url}${pageNumber}`, "GET");
-
     if (!response?.success) {
       if (pageNumber === 1) console.error("خطا در دریافت اطلاعات");
       redirectToLogin();
@@ -118,7 +122,7 @@ async function fetchCustomerData(url, key, renderItem) {
 
     if (pageNumber === 1) DOM.containerProduct.innerHTML = "";
 
-    items.forEach(renderItem);
+    items.reverse().forEach(renderItem);
     customerScrollObserver.observe();
   } catch (err) {
     console.error("خطا:", err);
@@ -175,9 +179,7 @@ function templetHtml(e) {
   );
 }
 
-// ========================
-// Product Actions (Add/Update/Delete)
-// ========================
+/* ======================== Product Actions (Add/Update/Delete) ======================== */
 async function handleNewProduct() {
   resetMessage(DOM.messageAddBox, "message__add");
 
@@ -330,15 +332,17 @@ async function handleDeleteProduct(event) {
   const btnDelete = event.target.closest(".delete-btn");
   if (!btnDelete) return;
   const card = btnDelete.closest(".product-card");
-  if (!card || !confirm("آیا از حذف این محصول مطمئن هستید؟")) return;
+  if (!card) return;
 
-  const response = await deleteEntity(`/products/${card.dataset.id}`);
-  if (response?.success) location.reload();
+  const isConfirmed = await showConfirm("آیا از حذف این محصول مطمئن هستید؟");
+
+  if (isConfirmed) {
+    const response = await deleteEntity(`/products/${card.dataset.id}`);
+    if (response?.success) location.reload();
+  }
 }
 
-// ========================
-// Utilities
-// ========================
+/* ======================== Utilities ======================== */
 function setupPriceWords() {
   const handleConversion = (inputEl, displayEl) => {
     if (!inputEl || !displayEl) return;
@@ -389,4 +393,64 @@ function showMessage(el, msg, type, { baseClass }) {
     type === "error" ? "error-message" : "success-message"
   }`;
   setTimeout(() => (el.className = baseClass), 1500);
+}
+
+async function fetchSearchData(searchTerm) {
+  if (isFetching || !hasMore) return;
+  isFetching = true;
+
+  try {
+    const response = await fetchHandler(
+      `/products/search?page=${pageNumber}`,
+      "post",
+      JSON.stringify({ name: searchTerm }),
+      { "Content-Type": "application/json" }
+    );
+
+    if (!response?.success) {
+      if (pageNumber === 1)
+        DOM.containerProduct.innerHTML = "<p>خطا در جستجو</p>";
+      return;
+    }
+
+    const items = response.products || [];
+
+    if (pageNumber === 1) DOM.containerProduct.innerHTML = "";
+
+    if (items.length === 0) {
+      hasMore = false;
+      if (pageNumber === 1)
+        DOM.containerProduct.innerHTML = "<p>محصولی یافت نشد</p>";
+    } else {
+      items.forEach(templetHtml);
+      customerScrollObserver.observe();
+    }
+  } catch (err) {
+    console.error("Search Error:", err);
+  } finally {
+    isFetching = false;
+  }
+}
+
+/* ======================== Event Handlers ======================== */
+function handleSearchInput(e) {
+  const searchTerm = e.target.value.trim();
+  clearTimeout(searchTimeout);
+
+  searchTimeout = setTimeout(() => {
+    resetPaginationState();
+
+    if (searchTerm) {
+      fetchSearchData(searchTerm);
+    } else {
+      fetchCustomerData(`/products?page=`, "products", templetHtml);
+    }
+  }, 600);
+}
+
+function resetPaginationState() {
+  pageNumber = 1;
+  hasMore = true;
+  DOM.containerProduct.innerHTML = "";
+  customerScrollObserver.disconnect();
 }

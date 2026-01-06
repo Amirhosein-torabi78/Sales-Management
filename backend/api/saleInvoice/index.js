@@ -42,7 +42,9 @@ router.get("/", RBAC, async (req, res) => {
 
         for (let p of invoice.products) {
           const product = await productModel.findOne({ _id: p.product });
-
+          if (!product) {
+            continue
+          }
           const salePrice = p.price || product.salePrice;
           const purchasePrice = product.purchasePrice;
           totalSalePrice += salePrice * p.inventory;

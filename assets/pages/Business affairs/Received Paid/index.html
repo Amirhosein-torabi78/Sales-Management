@@ -1,5 +1,3 @@
-<!-- @format -->
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
   <head>
@@ -7,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>مدیریت پرداختی و دریافتی ها</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
   <body>
     <div class="container">
@@ -20,7 +21,7 @@
             aria-label="بازگشت"
             title="بازگشت"
           >
-         <i class="fas fa-arrow-right"></i>
+            <i class="fas fa-arrow-right"></i>
           </button>
         </div>
         <h1 class="header-title">مدیریت پرداختی و دریافتی ها</h1>
@@ -30,22 +31,6 @@
       <div class="tabs">
         <button class="tab" id="paymentsTab">پرداختی</button>
         <button class="tab active" id="receiptsTab">دریافتی</button>
-      </div>
-
-      <!-- Summary Bar -->
-      <div class="summary-bar">
-        <div class="summary-item">
-          <span class="summary-label">جمع:</span>
-          <span class="summary-value" id="totalValue">۰</span>
-        </div>
-        <div class="summary-item">
-          <span class="summary-label">نقد:</span>
-          <span class="summary-value" id="cashValue">۰</span>
-        </div>
-        <div class="summary-item">
-          <span class="summary-label">چک:</span>
-          <span class="summary-value" id="checkValue">۰</span>
-        </div>
       </div>
 
       <!-- Main Content - Empty State -->
@@ -113,8 +98,74 @@
           <path d="M12 5v14M5 12h14" />
         </svg>
       </button>
+      <div class="container__form__add">
+        <form action="" class="new__customer">
+          <button type="button" class="exit">
+            <i class="fas fa-plus"></i>
+          </button>
+          <h5>ثبت تراکنش جدید</h5>
+          <div>
+            <label for="#">مبلغ(تومان)</label>
+            <input class="new__prise" type="number" />
+            <div id="purchasePriceWords" class="price-word"></div>
+          </div>
+          <div>
+            <label for="#">مشتری را انتخاب کنید</label>
+            <select name="" id="" class="select__customer__add">
+              انتخاب کنید ...
+            </select>
+          </div>
+          <div>
+            <label for="#">فروشنده را رانتخاب کنید</label>
+            <select name="" id="" class="select__seller__add">
+              انتخاب کنید...
+            </select>
+          </div>
+          <div>
+            <label for="#">توضیحات:</label>
+            <textarea name="" id="" class="Description__add"></textarea>
+          </div>
+
+          <button type="button" class="btn__received__add">
+            افزودن تراکنش جدید
+          </button>
+          <p class="message__add"></p>
+        </form>
+      </div>
+      <div class="container__form__edit" style="display: none;">
+  <form action="" class="new__customer edit__form">
+    <button type="button" class="exit exit-edit">
+      <i class="fas fa-plus"></i>
+    </button>
+    <h5>ویرایش تراکنش دریافتی</h5>
+    <div>
+      <label>مبلغ (تومان)</label>
+      <input class="edit__price" type="number" />
+      <div id="editPriceWords" class="price-word"></div>
+    </div>
+    <div>
+      <label>مشتری</label>
+      <select class="edit__select__customer">
+        </select>
+    </div>
+    <div>
+      <label>فروشنده</label>
+      <select class="edit__select__seller">
+        </select>
+    </div>
+    <div>
+      <label>توضیحات:</label>
+      <textarea class="edit__description"></textarea>
+    </div>
+
+    <button type="button" class="btn__submit__edit">
+      ثبت تغییرات نهایی
+    </button>
+    <p class="message__edit"></p>
+  </form>
+</div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
   </body>
 </html>

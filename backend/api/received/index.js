@@ -16,7 +16,12 @@ const userModel = require("../../models/user");
 router.get("/", RBAC, async (req, res) => {
   try {
     await connectToDb();
-    const receiveds = await receivedModel.find().lean();
+    const receiveds = await receivedModel
+      .find()
+      .populate("customer")
+      .populate("seller")
+      .populate("saleInvoice")
+      .lean();
     if (req.query?.page) {
       const page = req.query.page * 10;
       const datas = receiveds.slice(page - 10, page);
@@ -170,6 +175,19 @@ router.delete("/:id", RBAC, async (req, res) => {
 router.get("/:id", RBAC, async (req, res) => {
   try {
     await connectToDb();
+    const { id } = req.params;
+    if (!id || !isValidObjectId(id)) {
+      return res
+        .status(422)
+        .json({ error: "آیدی دریافتی معتبر نیست", success: false });
+    }
+    const received = await receivedModel.findOne({ _id: id }).lean();
+    if (!received) {
+      return res
+        .status(404)
+        .json({ error: "دریافتی یافت نشد", success: false });
+    }
+    return res.json({ received, success: true });
   } catch (error) {
     return res.status(500).json({ error: "خطای ناشناخته", success: false });
   }

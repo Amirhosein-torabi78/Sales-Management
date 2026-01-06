@@ -11,6 +11,7 @@ const myCheckModel = require("../../models/myCheck");
 const demandModel = require("../../models/demand");
 const userModel = require("../../models/user");
 const productModel = require("../../models/product");
+const buildSearchQuery = require("../../utils/buildSearchQuery");
 
 router.get("/", RBAC, async (req, res) => {
   try {
@@ -265,9 +266,9 @@ router.put("/:id", RBAC, async (req, res) => {
       Number(off);
 
     // محاسبه جمع قیمت محصولات موجود در فاکتور
-    const productPrices = invoice.products.reduce((acc , curr)=>{
-        acc += (curr.purchasePrice * curr.inventory)
-        return acc
+    const productPrices = invoice.products.reduce((acc, curr) => {
+      acc += curr.purchasePrice * curr.inventory;
+      return acc;
     });
 
     if (productPrices > totalPrices) {
@@ -401,6 +402,50 @@ router.delete("/:id", RBAC, async (req, res) => {
       message: "فاکتور خرید با موفقیت حذف شد",
       success: true,
     });
+  } catch (error) {
+    return res.status(500).json({ error: "خطای ناشناخته", success: false });
+  }
+});
+
+router.get("/:id", RBAC, async (req, res) => {
+  try {
+    await connectToDb();
+    const { id } = req.params;
+    if (!id || !isValidObjectId(id)) {
+      return res
+        .status(422)
+        .json({ error: "آیدی فاکتور خرید معتبر نیست", success: false });
+    }
+    const purchaseInvoice = await purchaseModel.findOne({ _id: id }).lean();
+    if (!purchaseInvoice) {
+      return res
+        .status(404)
+        .json({ error: "فاکتور خرید یافت نشد", success: false });
+    }
+    return res.json({ purchaseInvoice, success: true });
+  } catch (error) {
+    return res.status(500).json({ error: "خطای ناشناخته", success: false });
+  }
+});
+
+router.post("/search", RBAC, async (req, res) => {
+  try {
+    await connectToDb();
+
+    const { pay } = req.body;
+    if (!pay) {
+      return res.status({ error: "نوع پرداخت نامعتبر است", success: false });
+    }
+
+    const purchaseInvoices = await purchaseInvoiceModel.find({ pay }).lean();
+    if (req.query?.page) {
+      const page = req.query.page * 10;
+      const datas = purchaseInvoices.slice(page - 10, page);
+      const totalPages = Math.ceil(purchaseInvoices.length / 10);
+      return res.json({ purchaseInvoices: datas, totalPages, success: true });
+    }
+
+    return res.json({ purchaseInvoices, success: true });
   } catch (error) {
     return res.status(500).json({ error: "خطای ناشناخته", success: false });
   }

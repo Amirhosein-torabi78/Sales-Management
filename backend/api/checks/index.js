@@ -12,8 +12,8 @@ router.get("/checks", RBAC, async (req, res) => {
     await connectToDb();
     const checks = await checkModel
       .find()
-      .populate("check")
       .populate("saleInvoice")
+      .populate("customer")
       .lean();
     if (req.query?.page) {
       const page = req.query.page * 10;
@@ -51,6 +51,28 @@ router.delete("/:id", RBAC, async (req, res) => {
   }
 });
 
+router.get("/:id", RBAC, async (req, res) => {
+  try {
+    await connectToDb();
+    const { id } = req.params;
+    if (!id || !isValidObjectId(id)) {
+      return res
+        .status(422)
+        .json({ error: "آیدی چک معتبر نیست", success: false });
+    }
+    const check = await checkModel
+      .findOne({ _id: id })
+      .populate("customer")
+      .populate("saleInvoice")
+      .lean();
+    if (!check) {
+      return res.status(404).json({ error: "مشتری یافت نشد", success: false });
+    }
 
+    return res.json({ check, success: true });
+  } catch (error) {
+    return res.status(500).json({ error: "خطای ناشناخته", success: false });
+  }
+});
 
 module.exports = router;
